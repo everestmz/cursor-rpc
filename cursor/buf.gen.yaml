@@ -3,7 +3,7 @@ managed:
   enabled: true
   override:
     - file_option: go_package_prefix
-      value: github.com/everestmz/everestmz.github.io/cursor-reversing/client/cursor/gen
+      value: github.com/everestmz/cursor-rpc/cursor/gen
 plugins:
   - local: protoc-gen-go
     out: gen

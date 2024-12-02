@@ -6,7 +6,48 @@ Works by reverse-engineering the minified, obfuscated JS in Cursor's VSCode fork
 
 ## Usage
 
-TODO
+### Generating client libraries
+
+Use the .proto files in `./cursor/aiserver/v1` to generate an RPC client library for your language.
+
+### Go library
+
+For detailed usage, check out [the basic example](cmd/example/main.go).
+
+```go
+// Get default credentials for Cursor:
+// NOTE: you will need to open Cursor and log in at least once. You may need to re-login to
+// refresh these credentials, or use the RefreshToken to get a new AccessToken.
+creds, err := cursor.GetDefaultCredentials()
+if err != nil {
+	log.Fatal(err)
+}
+
+// Set up a service:
+aiService := cursor.NewAiServiceClient()
+
+// Get completions!
+model := "gpt-4"
+resp, err := aiService.StreamChat(context.TODO(), cursor.NewRequest(creds, &aiserverv1.GetChatRequest{
+	ModelDetails: &aiserverv1.ModelDetails{
+		ModelName: &model,
+	},
+	Conversation: []*aiserverv1.ConversationMessage{
+		{
+			Text: "Hello, who are you?",
+			Type: aiserverv1.ConversationMessage_MESSAGE_TYPE_HUMAN,
+		},
+	},
+}))
+if err != nil {
+	log.Fatal(err)
+}
+
+for resp.Receive() {
+	next := resp.Msg()
+	fmt.Printf(next.Text)
+}
+```
 
 ## Updating the schema
 

@@ -8,7 +8,7 @@ import (
 	connect "connectrpc.com/connect"
 	context "context"
 	errors "errors"
-	v1 "github.com/everestmz/everestmz.github.io/cursor-reversing/client/cursor/gen/aiserver/v1"
+	v1 "github.com/everestmz/cursor-rpc/cursor/gen/aiserver/v1"
 	http "net/http"
 	strings "strings"
 )
