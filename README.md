@@ -4,6 +4,8 @@ Protos and go library to communicate with Cursor's backend, without using Cursor
 
 Works by reverse-engineering the minified, obfuscated JS in Cursor's VSCode fork and acting like a bootleg module loader to stand up only the relevant modules needed to get the Protobuf typing info.
 
+**NOTE**: To use a Cursor account with Vim or Helix, check out [sage](https://github.com/everestmz/sage).
+
 ## Usage
 
 ### Generating client libraries
